@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Project specific
+backend/data/
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
+
+# Add these lines
+logs/
+*.log
