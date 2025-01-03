@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
+from app.services.log_storage_es import ElasticLogStorage
 
 app = FastAPI(title="HDFS Anomaly Detection System")
 
@@ -12,6 +13,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+async def startup_event():
+    # Initialize Elasticsearch indices
+    storage = ElasticLogStorage()
+    await storage.initialize()
 
 # Include routers
 app.include_router(router)

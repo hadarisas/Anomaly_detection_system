@@ -2,7 +2,7 @@ import random
 from datetime import datetime
 import asyncio
 import json
-from app.services.log_storage import LogStorage
+from app.services.log_storage_es import ElasticLogStorage
 
 class HDFSLogSimulator:
     def __init__(self):
@@ -27,7 +27,7 @@ class HDFSLogSimulator:
             "FATAL dfs.DataNode: DataNode is shutting down: {}",
         ]
 
-        self.log_storage = LogStorage()
+        self.log_storage = ElasticLogStorage()
 
     def generate_log(self, include_anomaly=False):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S,%f")[:-3]
