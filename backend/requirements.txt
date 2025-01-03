@@ -1,5 +1,6 @@
 fastapi
 uvicorn
+langchain-huggingface
 langchain
 langchain-community     
 chromadb

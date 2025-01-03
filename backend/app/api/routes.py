@@ -5,7 +5,7 @@ from typing import List, Dict, Optional
 import asyncio
 import json
 from app.services.log_storage_es import ElasticLogStorage
-from datetime import datetime
+from datetime import datetime, timedelta
 
 router = APIRouter()
 log_processor = LogProcessor()
@@ -74,46 +74,50 @@ async def get_anomaly_history(
         storage = ElasticLogStorage()
         await storage.initialize()
 
-        # Calculate appropriate interval based on time difference
-        if start and end:
-            start_date = start
-            end_date = end
+        # If no dates provided, use last 24 hours
+        if not start or not end:
+            end_dt = datetime.utcnow()
+            start_dt = end_dt - timedelta(hours=24)
+            end = end_dt.isoformat() + 'Z'
+            start = start_dt.isoformat() + 'Z'
+        else:
+            # Ensure dates are in the correct format
             try:
-                # Handle timezone-aware datetime strings
+                # Parse the dates to ensure they're valid
                 start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
                 end_dt = datetime.fromisoformat(end.replace('Z', '+00:00'))
-                hours_diff = (end_dt - start_dt).total_seconds() / 3600
                 
-                # Choose appropriate interval
-                if hours_diff <= 6:
-                    interval = "5m"
-                elif hours_diff <= 24:
-                    interval = "15m"
-                elif hours_diff <= 168:  # 7 days
-                    interval = "1h"
-                else:
-                    interval = "6h"
+                # Format them back to ISO format
+                start = start_dt.isoformat() + 'Z'
+                end = end_dt.isoformat() + 'Z'
+                
+                print(f"Processed dates: start={start}, end={end}")
             except ValueError as e:
                 print(f"Error parsing dates: {e}")
-                # Default to last 24 hours if date parsing fails
-                end_date = "now"
-                start_date = "now-24h"
-                interval = "1h"
-        else:
-            # Default to last 24 hours
-            end_date = "now"
-            start_date = "now-24h"
+                return {"error": "Invalid date format"}
+
+        # Calculate interval based on time difference
+        hours_diff = (end_dt - start_dt).total_seconds() / 3600
+        if hours_diff <= 6:
+            interval = "5m"
+        elif hours_diff <= 24:
+            interval = "15m"
+        elif hours_diff <= 168:  # 7 days
             interval = "1h"
+        else:
+            interval = "6h"
+
+        print(f"Using interval: {interval} for {hours_diff} hours difference")
 
         history = await storage.get_anomaly_history(
-            start_date=start_date,
-            end_date=end_date,
+            start_date=start,
+            end_date=end,
             interval=interval
         )
         return history
     except Exception as e:
         print(f"Error fetching anomaly history: {e}")
-        raise
+        return {"error": str(e)}
     finally:
         if storage:
             await storage.close()

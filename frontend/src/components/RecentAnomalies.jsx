@@ -11,6 +11,9 @@ const RecentAnomalies = ({ recentAnomalies }) => {
 
   return (
     <div className="px-4 py-6 sm:px-0">
+      <h2 className="text-lg font-medium text-gray-900 mb-4">
+        Recent Anomalies ({recentAnomalies.length})
+      </h2>
       <div className="border-4 border-dashed border-gray-200 rounded-lg p-4">
         {recentAnomalies.length === 0 ? (
           <div className="text-center text-gray-500 py-8">

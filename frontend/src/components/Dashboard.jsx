@@ -4,6 +4,7 @@ import LiveAnomalyChart from './LiveAnomalyChart';
 import ControlPanel from './ControlPanel';
 import StatsGrid from './StatsGrid';
 import DashboardHeader from './DashboardHeader';
+import HistoricalChart from './HistoricalChart';
 
 const Dashboard = () => {
   const [isSimulating, setIsSimulating] = useState(false);
@@ -227,6 +228,7 @@ const Dashboard = () => {
           setTimeUnit={setTimeUnit}
           isConnected={isConnected}
         />
+        <HistoricalChart />
         <RecentAnomalies recentAnomalies={recentAnomalies} />
       </div>
     </div>

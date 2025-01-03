@@ -6,6 +6,7 @@ A real-time anomaly detection system for HDFS logs using AI tools including Hugg
 
 - Python 3.9+
 - Node.js 16+
+- Docker
 
 ## Setup Instructions
 
@@ -85,7 +86,9 @@ The frontend is built with:
 
 ## API Endpoints
 
-- `POST /analyze-logs`: Submit logs for analysis
+- `GET /health`: Health check endpoint
+- `GET /anomalies/history`: Get historical anomalies
+- `POST /simulate-logs`: Simulate logs for testing
 - `WS /ws`: WebSocket endpoint for real-time updates
 
 ## Contributing
@@ -98,7 +101,7 @@ The frontend is built with:
 
 ## TODO
 
-- [ ] Enhace Dashboard with more visualizations
-- [ ] Add a Database to store logs and anomalies
+- [x] Add a Database to store logs and anomalies
+- [x] Enhace Dashboard with more visualizations
 - [ ] Add authentication and authorization
 - [ ] Add logs auto collection from HDFS (through a script)
