@@ -2,8 +2,21 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
 from app.services.log_storage_es import ElasticLogStorage
+from contextlib import asynccontextmanager
+from app.services.log_processor import LogProcessor
 
-app = FastAPI(title="HDFS Anomaly Detection System")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    yield
+    # Shutdown
+    try:
+        if hasattr(router, 'log_processor'):
+            await router.log_processor.cleanup()
+    except Exception as e:
+        print(f"Error during shutdown: {e}")
+
+app = FastAPI(title="HDFS Anomaly Detection System", lifespan=lifespan)
 
 # Configure CORS
 app.add_middleware(

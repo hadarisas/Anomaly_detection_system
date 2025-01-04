@@ -7,8 +7,16 @@ from dotenv import load_dotenv
 from datetime import datetime
 import re
 import torch
+from .email_service import EmailService
+import warnings
+from transformers import logging as transformers_logging
 
 load_dotenv()
+
+# Suppress specific model warnings
+warnings.filterwarnings("ignore", message="Some weights of RobertaForSequenceClassification were not initialized")
+warnings.filterwarnings("ignore", message="You should probably TRAIN this model on a down-stream task")
+transformers_logging.set_verbosity_error()  # Only show errors, not warnings
 
 # Define anomaly categories and their descriptions for the model
 ANOMALY_CATEGORIES = {
@@ -22,10 +30,14 @@ ANOMALY_CATEGORIES = {
 
 class LogProcessor:
     def __init__(self):
+        warnings.filterwarnings("ignore", message="Device set to use cpu")
         # Initialize  Hugging Face API token
         self.hf_api_token = os.getenv('HUGGING_FACE_API_TOKEN')
         if not self.hf_api_token:
             raise ValueError("HUGGING_FACE_API_TOKEN environment variable is required")
+
+        # Initialize email service
+        self.email_service = EmailService()
 
         # Define RFC 5424 standard scores
         self.SEVERITY_SCORES = {
@@ -50,6 +62,7 @@ class LogProcessor:
             "text-classification",
             model="roberta-base",  
             token=self.hf_api_token,
+            ignore_mismatched_sizes=True,
             device=0 if torch.cuda.is_available() else -1  # GPU acceleration if available
         )
 
@@ -58,6 +71,8 @@ class LogProcessor:
             "zero-shot-classification",
             model="microsoft/codebert-base-mlm",
             token=self.hf_api_token,
+            ignore_mismatched_sizes=True,
+            model_kwargs={"label2id": {"ENTAILMENT": 0, "NOT_ENTAILMENT": 1}},
             device=0 if torch.cuda.is_available() else -1
         )
         
@@ -206,6 +221,25 @@ class LogProcessor:
                     anomaly.update({
                         "classification": classification_result
                     })
+                    
+                    # Send email notification for high-severity anomalies
+                    if final_score > 0.7:  # High severity threshold
+                        admin_emails = self.email_service.get_admin_emails(classification_result['category'])
+                        
+                        if admin_emails:
+                            subject, body = self.email_service.format_anomaly_notification(
+                                anomaly_text=log,
+                                anomaly_type=classification_result['category'],
+                                score=final_score,
+                                timestamp=datetime.now()
+                            )
+                            
+                            await self.email_service.send_email(
+                                subject=subject,
+                                body=body,
+                                to_emails=admin_emails,
+                                anomaly_type=classification_result['category']
+                            )
                         
                     anomalies.append(anomaly)
                     
