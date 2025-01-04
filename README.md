@@ -12,26 +12,32 @@ A real-time anomaly detection system for HDFS logs using AI tools including Hugg
 
 ### Backend Setup
 
-1. Create and activate a virtual environment:
+1. Create Docker container for Elasticsearch
+
+```bash
+docker compose up -d
+```
+
+2. Create and activate a virtual environment:
 
 ```bash
 cd backend
 python -m venv venv
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Create .env file with the following variables:
+4. Create .env file with the following variables:
 
 ```bash
 HUGGING_FACE_API_TOKEN=your_huggingface_api_key
 ```
 
-4. Start the backend server:
+5. Start the backend server:
 
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000

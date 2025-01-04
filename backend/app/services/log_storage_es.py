@@ -12,7 +12,7 @@ class ElasticLogStorage:
     async def initialize(self):
         """Initialize Elasticsearch indices"""
         try:
-            # Anomalies mapping
+            # Anomalies mapping with enhanced categories
             if not await self.es.indices.exists(index=self.anomalies_index):
                 await self.es.indices.create(
                     index=self.anomalies_index,
@@ -21,17 +21,19 @@ class ElasticLogStorage:
                             "@timestamp": {"type": "date"},
                             "text": {"type": "text"},
                             "score": {"type": "float"},
-                            "type": {"type": "keyword"}
+                            "type": {"type": "keyword"},
+                            "sub_type": {"type": "keyword"},  # New field for detailed categorization
+                            "duration_ms": {"type": "long"},  # For JVM pauses
+                            "source_component": {"type": "keyword"},  # Component that generated the error
+                            "stack_trace": {"type": "text"}  # For storing stack traces
                         }
                     }
                 )
                 print(f"Created index {self.anomalies_index}")
             
-            # Debug: Print existing indices
+            # Keep existing debug prints
             indices = await self.es.indices.get(index="*")
             print(f"Existing indices: {indices}")
-            
-            # Debug: Print mapping
             mapping = await self.es.indices.get_mapping(index=self.anomalies_index)
             print(f"Index mapping: {mapping}")
             
@@ -56,24 +58,42 @@ class ElasticLogStorage:
         await self.es.bulk(operations=bulk_data, refresh=True)
 
     async def store_anomalies(self, anomalies: List[Dict]):
-        """Store detected anomalies to Elasticsearch"""
+        """Store detected anomalies with enhanced metadata"""
         try:
             bulk_data = []
             for anomaly in anomalies:
                 bulk_data.append({
                     "index": {"_index": self.anomalies_index}
                 })
+                
                 # Ensure timestamp is in ISO format
                 timestamp = anomaly.get("timestamp", datetime.now().isoformat())
                 if isinstance(timestamp, datetime):
                     timestamp = timestamp.isoformat()
-                    
-                bulk_data.append({
-                    "@timestamp": timestamp,  # Use @timestamp as the standard field name
+                
+                # Get detailed anomaly type info
+                anomaly_info = self._determine_anomaly_type(anomaly["text"])
+                
+                # Extract stack trace if present
+                stack_trace = None
+                if "\n\t" in anomaly["text"]:
+                    stack_trace = "\n".join(anomaly["text"].split("\n")[1:])
+                
+                # Combine original data with enhanced metadata
+                doc = {
+                    "@timestamp": timestamp,
                     "text": anomaly["text"],
                     "score": anomaly["score"],
-                    "type": anomaly.get("type", "UNKNOWN")  # Ensure type is uppercase
-                })
+                    "type": anomaly_info["type"],
+                    "sub_type": anomaly_info.get("sub_type"),
+                    "duration_ms": anomaly_info.get("duration_ms"),
+                    "source_component": anomaly_info.get("source_component"),
+                    "stack_trace": stack_trace
+                }
+                
+                # Remove None values to keep documents clean
+                doc = {k: v for k, v in doc.items() if v is not None}
+                bulk_data.append(doc)
             
             if bulk_data:
                 response = await self.es.bulk(operations=bulk_data, refresh=True)
@@ -131,17 +151,50 @@ class ElasticLogStorage:
             return "NameSystem"
         return "Other"
 
-    def _determine_anomaly_type(self, text: str) -> str:
-        """Determine the type of anomaly based on the log text"""
-        if "IOException" in text:
-            return "IO_ERROR"
+    def _determine_anomaly_type(self, text: str) -> dict:
+        """Enhanced anomaly type detection with sub-categories"""
+        if "JvmPauseMonitor" in text:
+            duration = int(''.join(filter(str.isdigit, text.split("approximately")[1].split("ms")[0])))
+            severity = "WARN" if duration > 15000 else "INFO"
+            return {
+                "type": "JVM_PAUSE",
+                "sub_type": f"{severity}_PAUSE",
+                "duration_ms": duration,
+                "source_component": "JvmPauseMonitor"
+            }
+        elif "Connection timed out" in text:
+            return {
+                "type": "CONNECTION_ERROR",
+                "sub_type": "TIMEOUT",
+                "source_component": "Server" if "Socket Reader" in text else "Other"
+            }
+        elif "NullPointerException" in text:
+            return {
+                "type": "THREAD_ERROR",
+                "sub_type": "NULL_POINTER",
+                "source_component": text.split("at ")[1].split(".")[0] if "at " in text else "Unknown"
+            }
+        elif "Token" in text and "ERROR" in text:
+            return {
+                "type": "SECURITY_ERROR",
+                "sub_type": "TOKEN_ERROR",
+                "source_component": "SecurityManager"
+            }
+        elif "DataNode" in text and "ERROR" in text:
+            if "corrupted" in text:
+                return {"type": "DATA_CORRUPTION", "sub_type": "BLOCK_CORRUPT"}
+            else:
+                return {"type": "DATANODE_ERROR", "sub_type": "GENERAL_ERROR"}
+        
+        # Maintain backward compatibility with original types
+        elif "IOException" in text:
+            return {"type": "IO_ERROR"}
         elif "Slow BlockReceiver" in text:
-            return "PERFORMANCE"
-        elif "corrupted" in text:
-            return "DATA_CORRUPTION"
+            return {"type": "PERFORMANCE"}
         elif "Exception" in text:
-            return "GENERAL_ERROR"
-        return "UNKNOWN"
+            return {"type": "GENERAL_ERROR"}
+            
+        return {"type": "UNKNOWN"}
 
     async def close(self):
         """Close Elasticsearch connection"""
