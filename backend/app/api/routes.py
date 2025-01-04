@@ -1,7 +1,7 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
 from app.services.log_processor import LogProcessor
 from app.utils.log_simulator import HDFSLogSimulator
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union
 import asyncio
 import json
 from app.services.log_storage_es import ElasticLogStorage
@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 router = APIRouter()
 log_processor = LogProcessor()
 log_simulator = HDFSLogSimulator()
+log_storage = ElasticLogStorage()
 
 @router.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -35,6 +36,10 @@ async def websocket_endpoint(websocket: WebSocket):
                         print("Stopping simulation...")
                         if simulation_task and not simulation_task.done():
                             simulation_task.cancel()
+                            try:
+                                await simulation_task
+                            except asyncio.CancelledError:
+                                await log_simulator.cleanup()
                             await websocket.send_json({
                                 "type": "simulation_status",
                                 "status": "stopped"
@@ -53,6 +58,10 @@ async def websocket_endpoint(websocket: WebSocket):
         print("Cleaning up websocket connection")
         if simulation_task and not simulation_task.done():
             simulation_task.cancel()
+            try:
+                await simulation_task
+            except asyncio.CancelledError:
+                await log_simulator.cleanup()
 
 @router.post("/simulate-logs")
 async def simulate_logs(num_logs: int = 10, include_anomalies: bool = True) -> Dict[str, List[str]]:
@@ -63,61 +72,45 @@ async def simulate_logs(num_logs: int = 10, include_anomalies: bool = True) -> D
     return {"logs": logs} 
 
 
+@router.get("/anomalies/recent")
+async def get_recent_anomalies(time_unit: str = "5min") -> Dict:
+    """Get recent anomalies with severity aggregation"""
+    storage = None
+    try:
+        storage = ElasticLogStorage()
+        await storage.initialize()
+        return await storage.get_recent_anomalies(time_unit)
+    except Exception as e:
+        print(f"Error fetching recent anomalies: {e}")
+        return {"error": str(e)}
+    finally:
+        if storage:
+            await storage.close()
+
 @router.get("/anomalies/history")
-async def get_anomaly_history(
-    start: Optional[str] = None,
-    end: Optional[str] = None,
-):
+async def get_anomaly_history(start: Optional[str] = None, end: Optional[str] = None) -> Dict:
     """Retrieve historical anomaly data with aggregations"""
     storage = None
     try:
         storage = ElasticLogStorage()
         await storage.initialize()
-
-        # If no dates provided, use last 24 hours
-        if not start or not end:
-            end_dt = datetime.utcnow()
-            start_dt = end_dt - timedelta(hours=24)
-            end = end_dt.isoformat() + 'Z'
-            start = start_dt.isoformat() + 'Z'
-        else:
-            # Ensure dates are in the correct format
-            try:
-                # Parse the dates to ensure they're valid
-                start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
-                end_dt = datetime.fromisoformat(end.replace('Z', '+00:00'))
-                
-                # Format them back to ISO format
-                start = start_dt.isoformat() + 'Z'
-                end = end_dt.isoformat() + 'Z'
-                
-                print(f"Processed dates: start={start}, end={end}")
-            except ValueError as e:
-                print(f"Error parsing dates: {e}")
-                return {"error": "Invalid date format"}
-
-        # Calculate interval based on time difference
-        hours_diff = (end_dt - start_dt).total_seconds() / 3600
-        if hours_diff <= 6:
-            interval = "5m"
-        elif hours_diff <= 24:
-            interval = "15m"
-        elif hours_diff <= 168:  # 7 days
-            interval = "1h"
-        else:
-            interval = "6h"
-
-        print(f"Using interval: {interval} for {hours_diff} hours difference")
-
-        history = await storage.get_anomaly_history(
-            start_date=start,
-            end_date=end,
-            interval=interval
-        )
-        return history
+        return await storage.get_anomaly_history(start_date=start, end_date=end)
     except Exception as e:
         print(f"Error fetching anomaly history: {e}")
         return {"error": str(e)}
     finally:
         if storage:
             await storage.close()
+
+@router.get("/anomalies/logs/{limit}")
+async def get_recent_anomaly_logs(limit: int = 15) -> List[Dict]:
+    """Get recent anomaly logs with details"""
+    return await log_storage.get_recent_logs(limit)
+
+@router.on_event("startup")
+async def startup_event():
+    await log_storage.initialize()
+
+@router.on_event("shutdown")
+async def shutdown_event():
+    await log_storage.close()

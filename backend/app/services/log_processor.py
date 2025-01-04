@@ -10,14 +10,24 @@ import torch
 
 load_dotenv()
 
+# Define anomaly categories and their descriptions for the model
+ANOMALY_CATEGORIES = {
+    "PERFORMANCE": "Issues related to system speed, response time, or resource usage efficiency",
+    "SECURITY": "Security breaches, authentication failures, or unauthorized access attempts",
+    "AVAILABILITY": "System downtime, service interruptions, or accessibility issues",
+    "DATA": "Data corruption, integrity issues, or data loss scenarios",
+    "NETWORK": "Network connectivity, timeout, or communication problems",
+    "RESOURCE": "CPU, memory, or disk space utilization issues"
+}
+
 class LogProcessor:
     def __init__(self):
-        # Initialize with Hugging Face API token
+        # Initialize  Hugging Face API token
         self.hf_api_token = os.getenv('HUGGING_FACE_API_TOKEN')
         if not self.hf_api_token:
             raise ValueError("HUGGING_FACE_API_TOKEN environment variable is required")
 
-        # Define RFC 5424 standard scores once
+        # Define RFC 5424 standard scores
         self.SEVERITY_SCORES = {
             "FATAL": 1.0,     # Maps to EMERG/ALERT (0-1 in RFC 5424)
             "ERROR": 0.75,    # Maps to ERROR (3 in RFC 5424)
@@ -26,24 +36,35 @@ class LogProcessor:
             "UNKNOWN": 0.25   # Default to INFO level
         }
 
-        # Better model for technical log embeddings (it converts logs to embeddings for vector search)
-        # It helps to find similar logs in the vector store
+        # Embeddings model
         self.embeddings = HuggingFaceEmbeddings(
-            model_name="BAAI/bge-small-en-v1.5",  # Optimized for technical text
+            model_name="BAAI/bge-small-en-v1.5",  
             model_kwargs={
                 'token': self.hf_api_token,
                 'device': 'cuda' if torch.cuda.is_available() else 'cpu'  # GPU acceleration if available
             }
         )
         
-        # Logs Classification Model
-        # It helps to detect anomalies in the logs
+        # Anomaly detection model
         self.anomaly_detector = pipeline(
             "text-classification",
             model="roberta-base",  
             token=self.hf_api_token,
             device=0 if torch.cuda.is_available() else -1  # GPU acceleration if available
         )
+
+        # Anomaly classification model
+        self.anomaly_classifier = pipeline(
+            "zero-shot-classification",
+            model="microsoft/codebert-base-mlm",
+            token=self.hf_api_token,
+            device=0 if torch.cuda.is_available() else -1
+        )
+        
+        # Prepare category labels and descriptions
+        self.category_labels = list(ANOMALY_CATEGORIES.keys())
+        self.category_descriptions = [f"{k}: {v}" for k, v in ANOMALY_CATEGORIES.items()]
+
         self.vector_store = None
         
     def _extract_log_level_and_component(self, log: str) -> tuple:
@@ -109,8 +130,32 @@ class LogProcessor:
         # Combine with sentiment score (keeping original weighting for compatibility)
         return (base_score * 0.7) + (sentiment_score * 0.3)
 
+    async def classify_anomaly(self, text: str) -> dict:
+        """Classify anomaly into predefined categories"""
+        try:
+            # Anomaly classification
+            result = self.anomaly_classifier(
+                text,
+                candidate_labels=self.category_descriptions,
+                hypothesis_template="This log entry describes {}"
+            )
+            
+            # Get the highest scoring category
+            best_match_idx = result['scores'].index(max(result['scores']))
+            category = self.category_labels[best_match_idx]
+            confidence = result['scores'][best_match_idx]
+            
+            return {
+                "category": category,
+                "confidence": confidence,
+                "scores": dict(zip(self.category_labels, result['scores']))
+            }
+        except Exception as e:
+            print(f"Error in anomaly classification: {e}")
+            return {"category": "UNKNOWN", "confidence": 0.0}
+
     async def process_logs(self, log_content: str):
-        """Process logs with enhanced anomaly detection"""
+        """Process logs with anomaly detection and classification"""
         if not log_content:
             return []
 
@@ -155,6 +200,12 @@ class LogProcessor:
                         anomaly.update(jvm_info)
                     if stack_trace_info:
                         anomaly.update(stack_trace_info)
+                        
+                    # Add classification for anomalies
+                    classification_result = await self.classify_anomaly(log)
+                    anomaly.update({
+                        "classification": classification_result
+                    })
                         
                     anomalies.append(anomaly)
                     

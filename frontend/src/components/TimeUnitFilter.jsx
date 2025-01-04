@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TimeUnitFilter = ({ timeUnit, setTimeUnit }) => {
-  const timeUnits = ['1min', '5min', '10min', '30min', '1h', '24h'];
+  const timeUnits = ['5min', '10min', '30min', '1h', '24h'];
 
   return (
     <div className="flex items-center space-x-2">

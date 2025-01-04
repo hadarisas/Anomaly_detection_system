@@ -3,77 +3,57 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import TimeUnitFilter from './TimeUnitFilter';
 
 const LiveAnomalyChart = ({ chartData, timeUnit, setTimeUnit, isConnected }) => {
-  // Get visible points based on time unit
-  const getVisiblePoints = () => {
+  // Generate timeline points based on time unit
+  const generateTimelinePoints = () => {
     if (!chartData.length) return [];
     
     const now = new Date();
-    const timeWindow = {
-      '1min': 60 * 1000,
+    const intervals = {
+    
+      '5min': 12,
+      '10min': 6,
+      '30min': 2,
+      '1h': 1,
+      '24h': 24
+    };
+    
+    const points = [];
+    const numPoints = intervals[timeUnit];
+    
+    // Calculate interval in milliseconds
+    const intervalMs = {
+    
       '5min': 5 * 60 * 1000,
       '10min': 10 * 60 * 1000,
       '30min': 30 * 60 * 1000,
       '1h': 60 * 60 * 1000,
-      '24h': 24 * 60 * 60 * 1000
+      '24h': 60 * 60 * 1000
     }[timeUnit];
-
-    // Filter data points within the time window
-    const cutoff = now.getTime() - timeWindow;
-    const recentPoints = chartData.filter(point => point.timestamp.getTime() > cutoff);
-
-    // Group data points by time buckets
-    const buckets = recentPoints.reduce((acc, point) => {
-      const bucketTime = new Date(point.timestamp);
-      switch(timeUnit) {
-        case '5min':
-          bucketTime.setMinutes(Math.floor(bucketTime.getMinutes() / 5) * 5, 0, 0);
-          break;
-        case '10min':
-          bucketTime.setMinutes(Math.floor(bucketTime.getMinutes() / 10) * 10, 0, 0);
-          break;
-        case '30min':
-          bucketTime.setMinutes(Math.floor(bucketTime.getMinutes() / 30) * 30, 0, 0);
-          break;
-        case '1h':
-          bucketTime.setMinutes(0, 0, 0);
-          break;
-        case '24h':
-          bucketTime.setHours(bucketTime.getHours(), 0, 0, 0);
-          break;
-        default: // 1min
-          bucketTime.setSeconds(0, 0);
-      }
-
-      const key = bucketTime.getTime();
+    
+    // Generate points for the full timeline
+    for (let i = numPoints - 1; i >= 0; i--) {
+      const pointTime = new Date(now.getTime() - (i * intervalMs));
       
-      if (!acc[key]) {
-        acc[key] = {
-          timestamp: bucketTime,
-          critical: 0,
-          warning: 0
-        };
-      }
+      // Find matching data point or use empty values
+      const dataPoint = chartData.find(d => {
+        const diff = Math.abs(d.timestamp.getTime() - pointTime.getTime());
+        return diff < intervalMs / 2;
+      });
       
-      acc[key].critical += point.critical;
-      acc[key].warning += point.warning;
-      
-      return acc;
-    }, {});
-
-    return Object.values(buckets)
-      .sort((a, b) => a.timestamp - b.timestamp)
-      .slice(-12);
+      points.push({
+        timestamp: pointTime,
+        critical: dataPoint?.critical || 0,
+        warning: dataPoint?.warning || 0
+      });
+    }
+    
+    return points;
   };
 
   const formatXAxis = (timestamp) => {
     if (!(timestamp instanceof Date)) return '';
     
     switch(timeUnit) {
-      case '1min':
-        return timestamp.toLocaleTimeString([], { 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        });
       case '5min':
       case '10min':
       case '30min':
@@ -112,7 +92,7 @@ const LiveAnomalyChart = ({ chartData, timeUnit, setTimeUnit, isConnected }) => 
     );
   };
 
-  const visibleData = getVisiblePoints();
+  const visibleData = generateTimelinePoints();
   const yAxisTicks = getYAxisTicks(visibleData);
 
   return (
@@ -130,7 +110,7 @@ const LiveAnomalyChart = ({ chartData, timeUnit, setTimeUnit, isConnected }) => 
             <XAxis
               dataKey="timestamp"
               tickFormatter={formatXAxis}
-              interval="preserveEnd"
+              interval={0}
               angle={-45}
               textAnchor="end"
               height={60}

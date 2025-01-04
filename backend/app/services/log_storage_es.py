@@ -1,7 +1,8 @@
 from elasticsearch import AsyncElasticsearch
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import List, Dict
 import json
+import re
 
 class ElasticLogStorage:
     def __init__(self):
@@ -12,6 +13,24 @@ class ElasticLogStorage:
     async def initialize(self):
         """Initialize Elasticsearch indices"""
         try:
+            # Raw logs mapping
+            if not await self.es.indices.exists(index=self.raw_logs_index):
+                await self.es.indices.create(
+                    index=self.raw_logs_index,
+                    mappings={
+                        "properties": {
+                            "timestamp": {"type": "date"},
+                            "content": {"type": "text"},
+                            "log_level": {"type": "keyword"},
+                            "source": {"type": "keyword"},
+                            "component": {"type": "keyword"},
+                            "host": {"type": "keyword"},
+                            "thread": {"type": "keyword"},
+                            "transaction_id": {"type": "keyword"}
+                        }
+                    }
+                )
+
             # Anomalies mapping with enhanced categories
             if not await self.es.indices.exists(index=self.anomalies_index):
                 await self.es.indices.create(
@@ -22,23 +41,31 @@ class ElasticLogStorage:
                             "text": {"type": "text"},
                             "score": {"type": "float"},
                             "type": {"type": "keyword"},
-                            "sub_type": {"type": "keyword"},  # New field for detailed categorization
-                            "duration_ms": {"type": "long"},  # For JVM pauses
-                            "source_component": {"type": "keyword"},  # Component that generated the error
-                            "stack_trace": {"type": "text"}  # For storing stack traces
+                            "sub_type": {"type": "keyword"},
+                            "duration_ms": {"type": "long"},
+                            "source_component": {"type": "keyword"},
+                            "stack_trace": {"type": "text"},
+                            "classification": {
+                                "properties": {
+                                    "category": {"type": "keyword"},
+                                    "confidence": {"type": "float"},
+                                    "scores": {
+                                        "properties": {
+                                            "PERFORMANCE": {"type": "float"},
+                                            "SECURITY": {"type": "float"},
+                                            "AVAILABILITY": {"type": "float"},
+                                            "DATA": {"type": "float"},
+                                            "NETWORK": {"type": "float"},
+                                            "RESOURCE": {"type": "float"}
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 )
-                print(f"Created index {self.anomalies_index}")
-            
-            # Keep existing debug prints
-            indices = await self.es.indices.get(index="*")
-            print(f"Existing indices: {indices}")
-            mapping = await self.es.indices.get_mapping(index=self.anomalies_index)
-            print(f"Index mapping: {mapping}")
             
         except Exception as e:
-            print(f"Error initializing ES: {e}")
             raise e
 
     async def store_raw_logs(self, logs: List[str]):
@@ -48,8 +75,9 @@ class ElasticLogStorage:
             bulk_data.append({
                 "index": {"_index": self.raw_logs_index}
             })
+            timestamp = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=1))).isoformat()
             bulk_data.append({
-                "timestamp": datetime.now().isoformat(),
+                "@timestamp": timestamp,
                 "content": log,
                 "log_level": self._extract_log_level(log),
                 "source": self._extract_source(log)
@@ -66,10 +94,8 @@ class ElasticLogStorage:
                     "index": {"_index": self.anomalies_index}
                 })
                 
-                # Ensure timestamp is in ISO format
-                timestamp = anomaly.get("timestamp", datetime.now().isoformat())
-                if isinstance(timestamp, datetime):
-                    timestamp = timestamp.isoformat()
+                # Use current time (UTC+1) as detection timestamp
+                timestamp = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=1))).isoformat()
                 
                 # Get detailed anomaly type info
                 anomaly_info = self._determine_anomaly_type(anomaly["text"])
@@ -97,7 +123,6 @@ class ElasticLogStorage:
             
             if bulk_data:
                 response = await self.es.bulk(operations=bulk_data, refresh=True)
-                print(f"Bulk indexing response: {response}")
                 if response.get("errors"):
                     print(f"Errors during bulk indexing: {response}")
                 return response
@@ -107,29 +132,141 @@ class ElasticLogStorage:
             print(f"Error storing anomalies: {e}")
             raise e
 
-    async def get_recent_logs(self, limit: int = 100) -> List[str]:
+    async def get_recent_logs(self, limit: int = 15) -> List[Dict]:
         """Retrieve recent raw logs"""
-        result = await self.es.search(
-            index=self.raw_logs_index,
-            body={
-                "query": {"match_all": {}},
-                "sort": [{"timestamp": "desc"}],
-                "size": limit
-            }
-        )
-        return [hit["_source"]["content"] for hit in result["hits"]["hits"]]
-
-    async def get_recent_anomalies(self, limit: int = 50) -> List[Dict]:
-        """Retrieve recent anomalies"""
         result = await self.es.search(
             index=self.anomalies_index,
             body={
                 "query": {"match_all": {}},
-                "sort": [{"timestamp": "desc"}],
+                "sort": [{"@timestamp": "desc"}],
                 "size": limit
             }
         )
-        return [hit["_source"] for hit in result["hits"]["hits"]]
+        return [
+            {
+                "timestamp": hit["_source"]["@timestamp"],
+                "text": hit["_source"]["text"],
+                "score": hit["_source"]["score"],
+                "type": hit["_source"]["type"],
+                "sub_type": hit["_source"].get("sub_type", ""),
+                "source_component": hit["_source"].get("source_component", ""),
+                "duration_ms": hit["_source"].get("duration_ms", None)
+            } 
+            for hit in result["hits"]["hits"]
+        ]
+
+    def _parse_time_unit(self, time_unit: str = "5min") -> str:
+        """Convert friendly time unit to Elasticsearch interval format"""
+        time_map = {
+            "1min": "1m",
+            "5min": "5m",
+            "10min": "10m",
+            "20min": "20m",
+            "30min": "30m",
+            "1h": "1h",
+            "24h": "24h"
+        }
+        return time_map.get(time_unit, "5m")
+
+    def _get_severity(self, score: float) -> str:
+        """Determine severity based on anomaly score"""
+        return "critical" if score >= 0.75 else "warning"
+
+    async def get_recent_anomalies(self, time_unit: str = "5min") -> Dict:
+        """Retrieve recent anomalies"""
+        try:
+            interval = self._parse_time_unit(time_unit)
+            
+            # Get current time in UTC+1
+            now = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=1)))
+            
+            # Calculate start time based on time_unit
+            if time_unit == "24h":
+                start_time = now - timedelta(days=1)
+            elif time_unit.endswith("h"):
+                hours = int(time_unit[:-1])
+                start_time = now - timedelta(hours=hours)
+            else:
+                minutes = int(time_unit[:-3])
+                start_time = now - timedelta(minutes=minutes)
+
+            print(f"Querying anomalies from {start_time} to {now}")
+            query = {
+                "size": 0,
+                "query": {
+                    "range": {
+                        "@timestamp": {
+                            "gte": start_time.isoformat(),
+                            "lte": now.isoformat()
+                        }
+                    }
+                },
+                "aggs": {
+                    "anomalies_over_time": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "1m",
+                            "min_doc_count": 0,
+                            "extended_bounds": {
+                                "min": start_time.isoformat(),
+                                "max": now.isoformat()
+                            }
+                        },
+                        "aggs": {
+                            "severity": {
+                                "range": {
+                                    "field": "score",
+                                    "ranges": [
+                                        { "from": 0.0, "to": 0.75, "key": "warning" },
+                                        { "from": 0.75, "to": 1.0, "key": "critical" }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "total_by_severity": {
+                        "range": {
+                            "field": "score",
+                            "ranges": [
+                                { "from": 0.0, "to": 0.75, "key": "warning" },
+                                { "from": 0.75, "to": 1.0, "key": "critical" }
+                            ]
+                        }
+                    }
+                }
+            }
+
+           
+            result = await self.es.search(
+                index=self.anomalies_index,
+                body=query
+            )
+            
+            # Get total counts
+            totals = {
+                "critical": 0,
+                "warning": 0
+            }
+            for bucket in result.body["aggregations"]["total_by_severity"]["buckets"]:
+                totals[bucket["key"]] = bucket["doc_count"]
+
+            return {
+                "totals": totals,
+                "query_details": {
+                    "start_time": start_time.isoformat(),
+                    "end_time": now.isoformat(),
+                    "current_time": now.isoformat(),  
+                    "last_anomaly_time": result.body["aggregations"]["anomalies_over_time"]["buckets"][0]["key_as_string"] if result.body["aggregations"]["anomalies_over_time"]["buckets"] else None,
+                    "interval": interval
+                }
+            }
+
+        except Exception as e:
+            print(f"Error in get_recent_anomalies: {str(e)}")
+            return {
+                "totals": {"critical": 0, "warning": 0},
+                "error": str(e)
+            }
 
     def _extract_log_level(self, log: str) -> str:
         """Extract log level from log message"""
@@ -152,148 +289,210 @@ class ElasticLogStorage:
         return "Other"
 
     def _determine_anomaly_type(self, text: str) -> dict:
-        """Enhanced anomaly type detection with sub-categories"""
+        """Determine anomaly type and map to high-level categories
+        Categories: PERFORMANCE, SECURITY, AVAILABILITY, DATA, NETWORK, RESOURCE
+        """
+        base_info = {
+            "source_component": self._extract_component(text)
+        }
+
+        # PERFORMANCE Category
         if "JvmPauseMonitor" in text:
             duration = int(''.join(filter(str.isdigit, text.split("approximately")[1].split("ms")[0])))
-            severity = "WARN" if duration > 15000 else "INFO"
             return {
-                "type": "JVM_PAUSE",
-                "sub_type": f"{severity}_PAUSE",
+                **base_info,
+                "type": "PERFORMANCE",
+                "sub_type": "JVM_PAUSE",
                 "duration_ms": duration,
-                "source_component": "JvmPauseMonitor"
             }
-        elif "Connection timed out" in text:
+        elif "Slow BlockReceiver" in text or "slow io" in text.lower():
             return {
-                "type": "CONNECTION_ERROR",
-                "sub_type": "TIMEOUT",
-                "source_component": "Server" if "Socket Reader" in text else "Other"
+                **base_info,
+                "type": "PERFORMANCE",
+                "sub_type": "SLOW_IO"
             }
-        elif "NullPointerException" in text:
+
+        # AVAILABILITY Category
+        elif "NameNode" in text:
+            if "Failed to start active state service" in text:
+                return {
+                    **base_info,
+                    "type": "AVAILABILITY",
+                    "sub_type": "STARTUP_FAILURE",
+                }
+            elif "Lost leadership" in text:
+                return {
+                    **base_info,
+                    "type": "AVAILABILITY",
+                    "sub_type": "LEADERSHIP_LOSS",
+                }
+
+        # DATA Category
+        elif "BlockManager" in text:
+            if "corrupted" in text:
+                return {
+                    **base_info,
+                    "type": "DATA",
+                    "sub_type": "CORRUPTION",
+                }
+            elif "Unable to place replica" in text:
+                return {
+                    **base_info,
+                    "type": "DATA",
+                    "sub_type": "REPLICA_PLACEMENT",
+                }
+            elif "Total load" in text:
+                return {
+                    **base_info,
+                    "type": "RESOURCE",
+                    "sub_type": "HIGH_LOAD",
+                }
+
+        # SECURITY Category
+        elif "Login failed" in text or "authentication failed" in text:
             return {
-                "type": "THREAD_ERROR",
-                "sub_type": "NULL_POINTER",
-                "source_component": text.split("at ")[1].split(".")[0] if "at " in text else "Unknown"
+                **base_info,
+                "type": "SECURITY",
+                "sub_type": "LOGIN_FAILURE" if "Login failed" in text else "AUTH_FAILURE",
             }
         elif "Token" in text and "ERROR" in text:
             return {
-                "type": "SECURITY_ERROR",
-                "sub_type": "TOKEN_ERROR",
-                "source_component": "SecurityManager"
+                **base_info,
+                "type": "SECURITY",
+                "sub_type": "TOKEN_ERROR"
             }
-        elif "DataNode" in text and "ERROR" in text:
-            if "corrupted" in text:
-                return {"type": "DATA_CORRUPTION", "sub_type": "BLOCK_CORRUPT"}
-            else:
-                return {"type": "DATANODE_ERROR", "sub_type": "GENERAL_ERROR"}
-        
-        # Maintain backward compatibility with original types
-        elif "IOException" in text:
-            return {"type": "IO_ERROR"}
-        elif "Slow BlockReceiver" in text:
-            return {"type": "PERFORMANCE"}
-        elif "Exception" in text:
-            return {"type": "GENERAL_ERROR"}
-            
-        return {"type": "UNKNOWN"}
+
+        # NETWORK Category
+        elif "Connection timed out" in text:
+            return {
+                **base_info,
+                "type": "NETWORK",
+                "sub_type": "TIMEOUT",
+            }
+        elif "Network error" in text or "Connection refused" in text:
+            return {
+                **base_info,
+                "type": "NETWORK",
+                "sub_type": "CONNECTION_ERROR"
+            }
+
+        # RESOURCE Category
+        elif "disk space" in text.lower() or "capacity exceeded" in text:
+            return {
+                **base_info,
+                "type": "RESOURCE",
+                "sub_type": "DISK_SPACE"
+            }
+        elif "Memory usage" in text or "OutOfMemoryError" in text:
+            return {
+                **base_info,
+                "type": "RESOURCE",
+                "sub_type": "MEMORY"
+            }
+
+        # Default/Unknown case
+        return {
+            **base_info,
+            "type": "UNKNOWN",
+            "sub_type": "GENERAL"
+        }
+
+    def _extract_component(self, text: str) -> str:
+        """Extract the component from the log message"""
+        component_match = re.search(r'org\.apache\.hadoop\.([\w\.]+):', text)
+        return component_match.group(1) if component_match else "unknown"
 
     async def close(self):
         """Close Elasticsearch connection"""
         await self.es.close()
 
     async def get_anomaly_history(self, start_date: str = None, end_date: str = None, interval: str = "1h"):
-        """Get historical anomaly totals"""
+        """Get historical anomaly totals by category"""
         try:
+            # If no dates provided, get all data
+            if not start_date or not end_date:
+                # Get the earliest and latest timestamps from the index
+                earliest = await self.es.search(
+                    index=self.anomalies_index,
+                    body={
+                        "size": 1,
+                        "sort": [{"@timestamp": "asc"}],
+                        "_source": ["@timestamp"]
+                    }
+                )
+                latest = await self.es.search(
+                    index=self.anomalies_index,
+                    body={
+                        "size": 1,
+                        "sort": [{"@timestamp": "desc"}],
+                        "_source": ["@timestamp"]
+                    }
+                )
+                
+                if earliest["hits"]["hits"] and latest["hits"]["hits"]:
+                    start_date = earliest["hits"]["hits"][0]["_source"]["@timestamp"]
+                    end_date = latest["hits"]["hits"][0]["_source"]["@timestamp"]
+                else:
+                    # If no data exists, use a default range
+                    now = datetime.now(timezone.utc)
+                    end_date = now.isoformat()
+                    start_date = (now - timedelta(days=30)).isoformat()
+
             # Base query without time range
             query = {
                 "size": 0,
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "gte": start_date,
+                                        "lte": end_date
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
                 "aggs": {
-                    "total_unknown": {
-                        "filter": {
-                            "term": {
-                                "type": "UNKNOWN"
-                            }
-                        }
-                    },
-                    "total_io_error": {
-                        "filter": {
-                            "term": {
-                                "type": "IO_ERROR"
-                            }
-                        }
-                    },
-                    "total_data_corruption": {
-                        "filter": {
-                            "term": {
-                                "type": "DATA_CORRUPTION"
-                            }
-                        }
-                    },
-                    "total_performance": {
-                        "filter": {
-                            "term": {
-                                "type": "PERFORMANCE"
-                            }
+                    "total_by_category": {
+                        "terms": {
+                            "field": "type",
+                            "include": [
+                                "PERFORMANCE",
+                                "SECURITY", 
+                                "AVAILABILITY",
+                                "DATA",
+                                "NETWORK",
+                                "RESOURCE",
+                                "UNKNOWN"
+                            ],
+                            "min_doc_count": 0
                         }
                     }
                 }
             }
 
-            # Only add time range and timestamp existence check if dates are provided
-            if start_date and end_date:
-                query["query"] = {
-                    "bool": {
-                        "must": [
-                            {
-                                "bool": {
-                                    "should": [
-                                        {"exists": {"field": "timestamp"}},
-                                        {"exists": {"field": "@timestamp"}}
-                                    ],
-                                    "minimum_should_match": 1
-                                }
-                            },
-                            {
-                                "bool": {
-                                    "should": [
-                                        {
-                                            "range": {
-                                                "timestamp": {
-                                                    "gte": start_date,
-                                                    "lte": end_date
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "range": {
-                                                "@timestamp": {
-                                                    "gte": start_date,
-                                                    "lte": end_date
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "minimum_should_match": 1
-                                }
-                            }
-                        ]
-                    }
-                }
-
-            print(f"ES Query: {json.dumps(query, indent=2)}")
             result = await self.es.search(
                 index=self.anomalies_index,
                 body=query
             )
             
             result_dict = result.body
-            print(f"ES Response: {json.dumps(result_dict, indent=2)}")
-
+            
+            # Get total counts
             totals = {
-                "io_error": result_dict["aggregations"]["total_io_error"]["doc_count"],
-                "data_corruption": result_dict["aggregations"]["total_data_corruption"]["doc_count"],
-                "performance": result_dict["aggregations"]["total_performance"]["doc_count"],
-                "unknown": result_dict["aggregations"]["total_unknown"]["doc_count"]
+                "PERFORMANCE": 0,
+                "SECURITY": 0,
+                "AVAILABILITY": 0,
+                "DATA": 0,
+                "NETWORK": 0,
+                "RESOURCE": 0,
+                "UNKNOWN": 0
             }
+            for bucket in result_dict["aggregations"]["total_by_category"]["buckets"]:
+                totals[bucket["key"]] = bucket["doc_count"]
 
             return {
                 "totals": totals,

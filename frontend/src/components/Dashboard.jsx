@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [chartData, setChartData] = useState([]);
   const [recentAnomalies, setRecentAnomalies] = useState([]);
-  const [timeUnit, setTimeUnit] = useState('5min');
+  const [timeUnit, setTimeUnit] = useState('10min');
   const [stats, setStats] = useState({
     totalAnomalies: 0,
     criticalCount: 0,
@@ -98,37 +98,7 @@ const Dashboard = () => {
     });
   }, []);
 
-  const getTimeBucket = useCallback((date, unit) => {
-    const minutes = date.getMinutes();
-    const hours = date.getHours();
-    
-    switch(unit) {
-      case '1min':
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      case '5min':
-        return date.toLocaleTimeString([], { 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        }).replace(/:(\d+)/, (_, m) => `:${Math.floor(minutes / 5) * 5}`.padStart(3, ':0'));
-      case '10min':
-        return date.toLocaleTimeString([], { 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        }).replace(/:(\d+)/, (_, m) => `:${Math.floor(minutes / 10) * 10}`.padStart(3, ':0'));
-      case '30min':
-        return date.toLocaleTimeString([], { 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        }).replace(/:(\d+)/, (_, m) => `:${Math.floor(minutes / 30) * 30}`.padStart(3, ':0'));
-      case '1h':
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-          .replace(/:\d+/, ':00');
-      case '24h':
-        return date.toLocaleTimeString([], { hour: '2-digit' }) + ':00';
-      default:
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-  }, []);
+  
 
   const handleWebSocketMessage = useCallback((data) => {
     if (data.type === 'simulation_status') {
@@ -145,7 +115,7 @@ const Dashboard = () => {
         const newAnomalies = data.map(anomaly => ({
           ...anomaly,
           timestamp: now,
-          text: anomaly.text || anomaly.message || anomaly.log || anomaly.details // Capture all possible text fields
+          text: anomaly.text
         }));
         
         return [...newAnomalies, ...prevAnomalies]
@@ -166,10 +136,29 @@ const Dashboard = () => {
           warning: warningAnomalies
         };
 
-        return [...prevData, newPoint].slice(-60);
+        // Keep last 60 minutes of data
+        const cutoff = new Date(now.getTime() - 60 * 60 * 1000);
+        return [...prevData.filter(point => point.timestamp > cutoff), newPoint];
       });
     }
   }, [updateStats]);
+
+   // Fetch recent anomalies on component mount
+   useEffect(() => {
+    const fetchRecentAnomalies = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/anomalies/logs/10');
+        if (!response.ok) throw new Error('Failed to fetch recent anomalies');
+        const data = await response.json();
+        console.log('Recent anomalies fetched:', data);
+        setRecentAnomalies(data);
+      } catch (error) {
+        console.error('Error fetching recent anomalies:', error);
+      }
+    };
+
+    fetchRecentAnomalies();
+  }, []);
 
   useEffect(() => {
     connectWebSocket();
@@ -207,6 +196,39 @@ const Dashboard = () => {
     setChartData([]);
     setRecentAnomalies([]);
   }, []);
+
+  // Fetch initial chart data
+  useEffect(() => {
+    const fetchInitialChartData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/anomalies/recent?time_unit=${timeUnit}`);
+        if (!response.ok) throw new Error('Failed to fetch chart data');
+        const data = await response.json();
+        console.log('Initial chart data:', data);
+        
+        // Convert the totals into a single data point
+        const initialDataPoint = {
+          timestamp: new Date(data.query_details.end_time),
+          critical: data.totals.critical,
+          warning: data.totals.warning
+        };
+        
+        setChartData([initialDataPoint]);
+        
+        // Update stats
+        setStats(prevStats => ({
+          ...prevStats,
+          totalAnomalies: data.totals.critical + data.totals.warning,
+          criticalCount: data.totals.critical,
+          warningCount: data.totals.warning
+        }));
+      } catch (error) {
+        console.error('Error fetching initial chart data:', error);
+      }
+    };
+    
+    fetchInitialChartData();
+  }, [timeUnit]);
 
   return (
     <div className="min-h-screen bg-gray-100">

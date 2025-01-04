@@ -2,7 +2,8 @@ import React from 'react';
 
 const RecentAnomalies = ({ recentAnomalies }) => {
   const formatTimestamp = (timestamp) => {
-    return new Date(timestamp).toLocaleString([], {
+    const date = new Date(timestamp);
+    return date.toLocaleString([], {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit'
@@ -36,10 +37,13 @@ const RecentAnomalies = ({ recentAnomalies }) => {
                       {anomaly.score >= 0.8 ? 'Critical Anomaly' : 'Warning Anomaly'}
                     </h3>
                     <p className="mt-1 text-log-content text-gray-600">
-                      {anomaly.text || anomaly.message || anomaly.log || anomaly.details || 'No details available'}
+                      {anomaly.text || 'No details available'}
                     </p>
                     <p className="mt-2 text-xs text-gray-500">
                       {formatTimestamp(anomaly.timestamp)}
+                    </p>
+                    <p className="mt-1 text-xs text-gray-400">
+                      Type: {anomaly.type} {anomaly.sub_type ? `(${anomaly.sub_type})` : ''}
                     </p>
                   </div>
                   <div className="ml-4">
