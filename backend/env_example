@@ -1,0 +1,20 @@
+# remane to .env
+
+
+# Hugging Face API Token
+HUGGING_FACE_API_TOKEN=your_hugging_face_api_token
+
+# SMTP Configuration
+SMTP_SERVER=your_smtp_server
+SMTP_PORT=your_smtp_port
+SMTP_USERNAME=your_smtp_username
+SMTP_PASSWORD=your_smtp_password
+SMTP_FROM_EMAIL=your_smtp_from_email
+
+# Admin email mapping
+NETWORK_ADMIN_EMAIL=your_network_admin_email
+SECURITY_ADMIN_EMAIL=your_security_admin_email
+AVAILABILITY_ADMIN_EMAIL=your_availability_admin_email
+DATA_ADMIN_EMAIL=your_data_admin_email
+RESOURCE_ADMIN_EMAIL=your_resource_admin_email
+PERFORMANCE_ADMIN_EMAIL=your_performance_admin_email
