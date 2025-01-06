@@ -62,7 +62,6 @@ class LogProcessor:
             "text-classification",
             model="roberta-base",  
             token=self.hf_api_token,
-            ignore_mismatched_sizes=True,
             device=0 if torch.cuda.is_available() else -1  # GPU acceleration if available
         )
 
