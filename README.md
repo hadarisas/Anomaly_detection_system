@@ -24,6 +24,9 @@ docker compose up -d
 cd backend
 python -m venv venv
 ```
+```bash
+source venv/bin/activate
+```
 
 3. Install dependencies:
 
