@@ -70,7 +70,6 @@ class LogProcessor:
             "zero-shot-classification",
             model="microsoft/codebert-base-mlm",
             token=self.hf_api_token,
-            ignore_mismatched_sizes=True,
             model_kwargs={"label2id": {"ENTAILMENT": 0, "NOT_ENTAILMENT": 1}},
             device=0 if torch.cuda.is_available() else -1
         )
