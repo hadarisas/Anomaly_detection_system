@@ -1,0 +1,630 @@
+2025-01-04 23:31:38,062 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:31:38,062 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:31:38,062 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2685ms
+No GCs detected
+2025-01-04 23:31:38,062 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:31:41,517 WARN org.apache.hadoop.security.UserGroupInformation: Login failed for user user_96 due to Invalid credentials
+2025-01-04 23:31:41,517 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 3 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:31:41,517 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:31:43,591 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:31:43,591 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode shutdown due to Block pool BP-1060 service failure
+2025-01-04 23:31:43,591 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 1
+2025-01-04 23:31:43,591 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:31:43,591 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 23324ms
+2025-01-04 23:31:46,247 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:31:46,248 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:31:46,248 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: Block blk_2537 is corrupted
+2025-01-04 23:31:46,248 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:31:48,830 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:31:48,830 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:31:48,830 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:31:50,338 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:31:50,338 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:31:50,338 WARN org.apache.hadoop.security.UserGroupInformation: Login failed for user user_33 due to Token expired
+2025-01-04 23:31:50,338 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:31:51,564 ERROR org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Failed to complete checkpoint for transaction ID 69250
+2025-01-04 23:31:54,355 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:31:54,356 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:31:54,356 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:31:56,555 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 4 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 0
+2025-01-04 23:31:56,555 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:31:56,555 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:31:56,555 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:31:59,549 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2556ms
+No GCs detected
+2025-01-04 23:31:59,549 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:31:59,549 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:31:59,549 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:31:59,549 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:32:01,728 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:32:01,728 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 1
+2025-01-04 23:32:01,728 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1263ms
+No GCs detected
+2025-01-04 23:32:01,728 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:32:03,255 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:32:03,255 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 6
+2025-01-04 23:32:03,255 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:03,255 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 0
+2025-01-04 23:32:05,088 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:06,920 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:06,920 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 1
+2025-01-04 23:32:06,920 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:32:06,920 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:08,832 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:32:08,832 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:32:08,832 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:32:08,832 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:10,094 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:32:10,095 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:32:10,095 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:10,095 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:10,095 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 1
+2025-01-04 23:32:12,804 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:32:12,804 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 1
+2025-01-04 23:32:12,804 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:32:12,804 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 3
+2025-01-04 23:32:14,954 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 16076ms
+2025-01-04 23:32:17,337 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 2 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:32:17,337 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 1
+2025-01-04 23:32:19,812 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 6
+2025-01-04 23:32:19,812 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:32:19,812 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:32:19,812 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1967ms
+No GCs detected
+2025-01-04 23:32:19,812 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:32:22,953 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:22,953 FATAL org.apache.hadoop.hdfs.server.namenode.NameNode: Failed to start active state service - Already running on node1
+2025-01-04 23:32:22,953 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:24,461 WARN org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Disk usage 91% exceeds threshold 80%
+2025-01-04 23:32:24,461 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:32:24,461 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:32:24,461 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:32:24,461 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:32:27,954 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 23610ms
+2025-01-04 23:32:27,954 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:27,954 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:32:27,954 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 3 Number of transactions batched in Syncs: 0
+2025-01-04 23:32:31,329 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:32:31,330 FATAL org.apache.hadoop.hdfs.server.namenode.NameNode: Failed to start active state service - Already running on node5
+2025-01-04 23:32:31,330 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:32:31,330 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:34,321 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:32:34,321 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:32:36,470 ERROR org.apache.hadoop.security.SecurityManager: Authentication failed for service token
+2025-01-04 23:32:36,470 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:32:36,470 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:32:38,653 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 8
+2025-01-04 23:32:38,653 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:41,252 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:41,252 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 1
+2025-01-04 23:32:41,252 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:32:43,820 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 1
+2025-01-04 23:32:43,821 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:32:45,884 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:32:47,334 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 2
+2025-01-04 23:32:47,334 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:32:49,376 FATAL org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode is shutting down due to disk failure
+2025-01-04 23:32:49,376 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:32:49,376 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:32:52,973 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:32:55,333 FATAL org.apache.hadoop.hdfs.server.namenode.NameNode: Failed to start active state service - Already running on node5
+2025-01-04 23:32:55,333 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:32:55,333 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:32:55,333 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:32:57,446 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 2
+2025-01-04 23:32:57,446 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:32:57,446 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 3 Total time for transactions(ms): 3 Number of transactions batched in Syncs: 2
+2025-01-04 23:32:57,446 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:32:57,446 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2920ms
+No GCs detected
+2025-01-04 23:33:00,008 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 22824ms
+2025-01-04 23:33:00,008 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:33:02,142 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2649ms
+No GCs detected
+2025-01-04 23:33:04,120 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:33:04,120 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:33:04,120 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:04,121 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:33:05,983 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:33:05,984 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:33:05,984 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:33:05,984 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 2
+2025-01-04 23:33:05,984 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:33:09,180 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:33:09,180 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:09,180 ERROR org.apache.hadoop.yarn.YarnUncaughtExceptionHandler: Thread Thread[Timer-3,5,main] threw an NullPointerException
+2025-01-04 23:33:09,180 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:33:11,729 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:33:11,729 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:33:11,729 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 2
+2025-01-04 23:33:11,729 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:33:13,614 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:33:13,615 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:33:15,495 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:33:15,495 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:33:15,495 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:15,495 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:33:15,495 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:17,808 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 1
+2025-01-04 23:33:17,808 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:33:19,578 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2340ms
+No GCs detected
+2025-01-04 23:33:19,578 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:33:19,578 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 7
+2025-01-04 23:33:19,578 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:33:21,205 WARN org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Disk usage 91% exceeds threshold 80%
+2025-01-04 23:33:21,206 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:33:21,206 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:22,686 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2638ms
+No GCs detected
+2025-01-04 23:33:22,687 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 2 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 2
+2025-01-04 23:33:22,687 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:33:24,792 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 5
+2025-01-04 23:33:24,793 WARN org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Disk usage 93% exceeds threshold 80%
+2025-01-04 23:33:24,793 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 10 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:33:24,793 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: Block blk_3885 is corrupted
+2025-01-04 23:33:26,744 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:33:26,744 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:33:26,744 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:33:26,744 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:28,269 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:28,269 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:33:28,269 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:29,875 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1963ms
+No GCs detected
+2025-01-04 23:33:29,875 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:33:29,875 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1183ms
+No GCs detected
+2025-01-04 23:33:29,875 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:29,875 WARN org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = 80%, number of live nodes = 3
+2025-01-04 23:33:31,624 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:33:33,469 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:33:33,469 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:33:35,888 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:35,889 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2023ms
+No GCs detected
+2025-01-04 23:33:35,889 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:35,889 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 13521ms
+2025-01-04 23:33:38,720 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:33:38,720 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:33:38,720 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 5 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 1
+2025-01-04 23:33:38,720 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:33:41,896 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:44,594 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:44,594 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 6
+2025-01-04 23:33:44,594 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 4 Total time for transactions(ms): 3 Number of transactions batched in Syncs: 0
+2025-01-04 23:33:47,454 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:49,628 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 1
+2025-01-04 23:33:49,628 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:33:49,628 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:33:49,628 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:33:49,628 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:33:52,265 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:33:52,265 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:33:52,265 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:37:40,723 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:37:40,723 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:37:40,723 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:37:42,563 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:37:42,563 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:37:44,691 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:37:44,691 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:37:44,691 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:37:44,691 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:37:44,691 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:37:47,552 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:37:49,745 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:37:49,745 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:37:52,395 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:37:52,395 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:37:52,395 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:37:52,396 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:37:52,396 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 29075ms
+2025-01-04 23:37:55,736 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:37:55,736 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:37:55,736 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1371ms
+No GCs detected
+2025-01-04 23:37:55,736 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:37:58,575 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:37:58,575 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:37:59,750 ERROR org.apache.hadoop.yarn.YarnUncaughtExceptionHandler: Thread Thread[Timer-1,5,main] threw an RuntimeException
+2025-01-04 23:37:59,750 WARN org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = 94%, number of live nodes = 1
+2025-01-04 23:37:59,750 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:38:01,775 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:38:01,775 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:38:03,091 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:38:03,091 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:38:05,083 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:38:05,083 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 5 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 0
+2025-01-04 23:38:08,022 WARN org.apache.hadoop.security.UserGroupInformation: Login failed for user user_91 due to Kerberos authentication failed
+2025-01-04 23:38:08,022 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:08,022 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:38:08,022 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:38:09,344 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:38:09,344 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:38:09,344 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1635ms
+No GCs detected
+2025-01-04 23:38:11,684 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:38:13,248 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:13,249 FATAL org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode is shutting down due to disk failure
+2025-01-04 23:38:13,249 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:38:13,249 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:38:13,249 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1687ms
+No GCs detected
+2025-01-04 23:38:15,402 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:38:15,402 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:38:15,402 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:38:16,730 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:16,730 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:38:19,847 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:38:22,196 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:38:40,826 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:38:40,827 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:38:40,827 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:38:40,827 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 10
+2025-01-04 23:38:40,827 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:38:42,617 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:42,617 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:38:42,617 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 6
+2025-01-04 23:38:45,130 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 10
+2025-01-04 23:38:45,130 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 1
+2025-01-04 23:38:45,130 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:38:45,130 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 7
+2025-01-04 23:38:46,648 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:38:49,002 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:49,002 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:38:49,002 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 2
+2025-01-04 23:38:51,780 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:51,780 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:51,780 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:38:53,656 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1640ms
+No GCs detected
+2025-01-04 23:38:56,403 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 10
+2025-01-04 23:38:56,404 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:38:56,404 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 8
+2025-01-04 23:38:56,404 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:38:56,404 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:38:58,021 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:38:58,021 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:38:58,021 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:38:58,021 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:00,717 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:39:02,193 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:02,193 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:39:05,246 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:39:05,247 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:39:05,247 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:39:05,247 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:05,247 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 5 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 0
+2025-01-04 23:39:07,367 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:39:07,367 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:39:07,367 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:39:07,367 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:07,367 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:39:10,177 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:10,177 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:39:10,177 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:39:11,550 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:11,550 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 10
+2025-01-04 23:39:11,550 WARN org.apache.hadoop.security.UserGroupInformation: Login failed for user user_24 due to User not authorized for this operation
+2025-01-04 23:39:11,550 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:39:11,550 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:39:14,200 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:14,200 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:39:14,200 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 10
+2025-01-04 23:39:14,200 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:16,182 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1267ms
+No GCs detected
+2025-01-04 23:39:16,182 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:39:16,182 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:39:16,182 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:17,974 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 9
+2025-01-04 23:39:17,974 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:39:17,974 FATAL org.apache.hadoop.hdfs.server.namenode.NameNode: Failed to start active state service - Already running on node2
+2025-01-04 23:39:17,974 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:21,063 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:39:21,063 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 10 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 1
+2025-01-04 23:39:21,063 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:39:21,063 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:21,063 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:23,311 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:23,311 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:39:23,311 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 1 Total time for transactions(ms): 3 Number of transactions batched in Syncs: 1
+2025-01-04 23:39:23,311 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:39:26,565 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1200ms
+No GCs detected
+2025-01-04 23:39:26,566 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:26,566 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:26,566 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:39:26,566 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:39:28,886 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:39:28,887 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:39:30,755 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:39:30,755 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:30,755 FATAL org.apache.hadoop.hdfs.server.namenode.NameNode: Failed to start active state service - Already running on node3
+2025-01-04 23:39:30,755 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:30,755 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:34,330 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:35,915 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 5 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 1
+2025-01-04 23:39:35,915 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:39:38,969 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:39:38,970 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:39:38,970 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:54,352 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:39:54,352 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2868ms
+No GCs detected
+2025-01-04 23:39:54,352 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: IOException in block blk_5981862 from datanode2: Connection timed out
+2025-01-04 23:39:56,770 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2849ms
+No GCs detected
+2025-01-04 23:39:56,770 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:39:58,621 ERROR org.apache.hadoop.yarn.YarnUncaughtExceptionHandler: Thread Thread[Timer-2,5,main] threw an NullPointerException
+2025-01-04 23:39:58,622 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:39:58,622 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 4 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:39:58,622 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 3
+2025-01-04 23:40:01,152 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:40:03,973 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 3 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 2
+2025-01-04 23:40:03,973 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:40:03,973 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:40:06,069 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:40:06,069 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: Block blk_1860 is corrupted
+2025-01-04 23:40:06,069 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:40:09,134 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: Block blk_6417 is corrupted
+2025-01-04 23:40:09,134 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:40:11,053 FATAL org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode is shutting down due to disk failure
+2025-01-04 23:40:12,876 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:40:12,877 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2453ms
+No GCs detected
+2025-01-04 23:40:14,747 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:40:14,747 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2766ms
+No GCs detected
+2025-01-04 23:40:14,747 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:40:14,747 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: Failed to complete block protocol BP-1774
+2025-01-04 23:40:17,379 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:40:17,379 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:40:17,379 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:40:17,379 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:40:17,379 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:40:18,760 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:40:18,760 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 10 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 0
+2025-01-04 23:47:33,606 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:47:33,606 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 1
+2025-01-04 23:47:33,606 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 6
+2025-01-04 23:47:33,606 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1587ms
+No GCs detected
+2025-01-04 23:47:36,882 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:47:36,882 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:47:36,882 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:47:36,882 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:47:36,882 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:47:39,606 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:47:39,606 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:47:39,606 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:47:39,606 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:47:39,606 WARN org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = 90%, number of live nodes = 1
+2025-01-04 23:47:41,284 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:47:43,493 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:47:43,494 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:47:43,494 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 2 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:47:43,494 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2941ms
+No GCs detected
+2025-01-04 23:47:43,494 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:47:45,562 FATAL org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode is shutting down due to disk failure
+2025-01-04 23:47:45,563 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:47:45,563 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2915ms
+No GCs detected
+2025-01-04 23:47:45,563 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:47:45,563 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 18526ms
+2025-01-04 23:47:50,570 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.4
+2025-01-04 23:47:50,570 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:47:50,570 WARN org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 23251ms
+2025-01-04 23:47:50,570 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:47:50,570 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:53:34,926 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 1
+2025-01-04 23:53:34,926 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:53:38,063 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:53:38,063 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 2
+2025-01-04 23:53:39,940 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 8 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 1
+2025-01-04 23:53:39,940 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:53:39,940 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 0
+2025-01-04 23:53:39,940 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:53:41,699 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1824ms
+No GCs detected
+2025-01-04 23:53:41,699 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:53:41,699 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:53:41,699 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:53:41,699 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:53:44,685 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:53:44,685 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:53:44,685 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:53:44,686 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:53:46,048 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1030ms
+No GCs detected
+2025-01-04 23:53:46,048 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:53:46,048 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 3
+2025-01-04 23:53:46,048 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:53:46,048 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:53:49,264 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 2 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 2
+2025-01-04 23:53:49,264 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1018ms
+No GCs detected
+2025-01-04 23:53:49,264 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:53:49,264 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:53:49,264 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:53:52,397 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:53:52,397 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2787ms
+No GCs detected
+2025-01-04 23:53:52,397 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:53:52,397 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:53:54,511 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1564ms
+No GCs detected
+2025-01-04 23:53:54,511 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:53:54,511 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 0
+2025-01-04 23:53:56,371 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 10404ms
+2025-01-04 23:53:56,371 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:53:59,140 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:53:59,140 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 7
+2025-01-04 23:53:59,140 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1517ms
+No GCs detected
+2025-01-04 23:53:59,141 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:53:59,141 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:54:02,323 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:02,323 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:04,022 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:54:04,022 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:04,022 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:04,022 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode shutdown due to Block pool BP-8536 service failure
+2025-01-04 23:54:04,022 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:54:05,958 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2726ms
+No GCs detected
+2025-01-04 23:54:05,958 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2408ms
+No GCs detected
+2025-01-04 23:54:05,959 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:54:05,959 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 2
+2025-01-04 23:54:05,959 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:08,988 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:54:08,988 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 2
+2025-01-04 23:54:11,291 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 4
+2025-01-04 23:54:11,293 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:54:11,293 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2154ms
+No GCs detected
+2025-01-04 23:54:11,293 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:11,293 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:54:14,706 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2874ms
+No GCs detected
+2025-01-04 23:54:14,706 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:16,775 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:54:16,775 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 8
+2025-01-04 23:54:18,667 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:18,667 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:18,667 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:54:19,838 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:54:19,838 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:19,838 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 5 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 1
+2025-01-04 23:54:21,182 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:21,182 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:54:21,182 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: IOException in block blk_5824162 from datanode3: Connection timed out
+2025-01-04 23:54:21,182 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:22,989 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:22,989 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:22,989 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:25,486 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:54:28,099 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:28,099 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:29,514 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:29,514 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:30,700 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:54:30,700 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:54:30,700 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:54:30,700 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:54:30,700 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:54:32,786 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2950ms
+No GCs detected
+2025-01-04 23:54:32,786 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:32,786 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:35,689 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1356ms
+No GCs detected
+2025-01-04 23:54:35,689 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:37,402 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:54:37,402 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 0
+2025-01-04 23:54:37,402 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: IOException in block blk_3073361 from datanode4: Connection timed out
+2025-01-04 23:54:37,402 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:37,402 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:39,418 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:54:39,418 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:54:39,418 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:39,418 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:54:39,418 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:41,944 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:41,944 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:41,944 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:54:43,809 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:54:43,809 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:43,809 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:43,809 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:54:43,809 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 2 Number of transactions batched in Syncs: 1
+2025-01-04 23:54:46,246 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:54:46,246 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:48,663 ERROR org.apache.hadoop.security.SecurityManager: Authentication failed for service token
+2025-01-04 23:54:48,663 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:54:48,663 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:54:48,663 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:48,663 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:54:50,780 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:54:52,302 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:54:52,302 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 2
+2025-01-04 23:54:52,302 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:54:52,302 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:53,938 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:54:53,938 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Storing RMDTMasterKey.
+2025-01-04 23:54:56,547 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:54:56,547 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:54:56,547 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:54:59,428 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:54:59,428 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:55:01,732 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 6 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 2
+2025-01-04 23:55:01,733 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:55:04,356 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:04,356 ERROR org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Lost leadership due to session expiry
+2025-01-04 23:55:04,356 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 4 Number of transactions batched in Syncs: 1
+2025-01-04 23:55:06,786 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:55:06,786 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: DataNode shutdown due to Block pool BP-7059 service failure
+2025-01-04 23:55:06,786 WARN org.apache.hadoop.security.UserGroupInformation: Login failed for user user_33 due to Permission denied
+2025-01-04 23:55:06,786 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:06,786 WARN org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = 81%, number of live nodes = 3
+2025-01-04 23:55:08,564 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:08,565 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:55:08,565 ERROR org.apache.hadoop.security.SecurityManager: Security token 4922 has expired
+2025-01-04 23:55:08,565 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:55:11,299 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:55:11,299 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:55:11,299 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:13,085 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:55:13,085 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2447ms
+No GCs detected
+2025-01-04 23:55:13,085 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:14,334 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 10
+2025-01-04 23:55:14,334 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:14,334 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:55:14,334 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:16,588 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:19,075 WARN org.apache.hadoop.security.UserGroupInformation: Login failed for user user_6 due to Invalid credentials
+2025-01-04 23:55:19,075 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:55:21,084 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:23,295 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:55:23,295 INFO org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore: Updating AMRMToken
+2025-01-04 23:55:23,295 ERROR org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Block blk_2937 is corrupted on 2 datanodes
+2025-01-04 23:55:26,460 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 4 Total time for transactions(ms): 3 Number of transactions batched in Syncs: 1
+2025-01-04 23:55:26,460 ERROR org.apache.hadoop.security.SecurityManager: Authentication failed for service token
+2025-01-04 23:55:26,460 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:26,460 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: IOException in block blk_1127884 from datanode3: Connection timed out
+2025-01-04 23:55:26,460 ERROR org.apache.hadoop.hdfs.server.datanode.DataNode: IOException in block blk_2276999 from datanode5: Connection timed out
+2025-01-04 23:55:30,170 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:30,170 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.3
+2025-01-04 23:55:30,170 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 3
+2025-01-04 23:55:32,686 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 6
+2025-01-04 23:55:32,686 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting checkpoint for transaction ID {}
+2025-01-04 23:55:32,687 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:55:35,135 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 1
+2025-01-04 23:55:35,135 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:35,135 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:35,136 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at {}
+2025-01-04 23:55:38,013 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:38,013 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:55:38,013 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens
+2025-01-04 23:55:39,170 INFO org.apache.hadoop.yarn.server.resourcemanager.security.RMDelegationTokenSecretManager: storing master key with keyID 7
+2025-01-04 23:55:39,171 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 5 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:55:41,736 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 9 Total time for transactions(ms): 1 Number of transactions batched in Syncs: 2
+2025-01-04 23:55:41,737 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:55:41,737 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 2823ms
+No GCs detected
+2025-01-04 23:55:41,737 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:55:44,037 INFO org.apache.hadoop.util.JvmPauseMonitor: Detected pause in JVM or host machine (eg GC): pause of approximately 1764ms
+No GCs detected
+2025-01-04 23:55:45,538 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 7 Total time for transactions(ms): 5 Number of transactions batched in Syncs: 1
+2025-01-04 23:55:45,538 INFO org.apache.hadoop.hdfs.server.blockmanagement.BlockManager: Total load = {}, number of live nodes = {}
+2025-01-04 23:55:45,538 ERROR org.apache.hadoop.yarn.YarnUncaughtExceptionHandler: Thread Thread[Timer-3,5,main] threw an NullPointerException
+2025-01-04 23:55:45,538 FATAL org.apache.hadoop.hdfs.server.namenode.NameNode: Failed to start active state service - Already running on node2
+2025-01-04 23:55:49,981 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 172.18.0.2
+2025-01-04 23:55:51,338 INFO org.apache.hadoop.hdfs.server.namenode.ha.ActiveStandbyElector: Successfully claimed leadership
+2025-01-04 23:55:51,338 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Block pool {} (Datanode Uuid {}) service has been successfully registered with NN
+2025-01-04 23:55:51,338 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Completed loading FSImage in {} milliseconds
+2025-01-04 23:55:51,338 INFO org.apache.hadoop.security.token.delegation.AbstractDelegationTokenSecretManager: Updating the current master key for generating delegation tokens

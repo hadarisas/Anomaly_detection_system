@@ -17,3 +17,4 @@ aiofiles
 elasticsearch[async]==8.12.1
 aiohttp
 urllib3<2.0
+kafka-python

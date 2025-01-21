@@ -24,6 +24,16 @@ docker compose up -d
 cd backend
 python -m venv venv
 ```
+On mac/Linux :
+
+```bash
+source venv/bin/activate
+```
+On Windows : 
+
+```
+source venv/scripts/activate
+```
 
 3. Install dependencies:
 
@@ -36,6 +46,13 @@ pip install -r requirements.txt
 ```bash
 HUGGING_FACE_API_TOKEN=your_huggingface_api_key
 ```
+
+4. Create a Kafka topic:
+
+```bash
+docker-compose exec kafka kafka-topics --create --topic hadoop-logs --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1
+```
+
 
 5. Start the backend server:
 
